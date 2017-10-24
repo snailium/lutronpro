@@ -2,14 +2,7 @@ var lutronpro = require('lutronpro');
 
 
 //Enter your Bridge IP Addresses
-var SMARTBRIDGE_IP = ['192.168.1.44'];
-var SMARTTHINGS_IP = '192.168.1.2';
-
-//Copy and past the below URL into your web browser.  Login with your Lutron credentials. In the addess bar at the end of the URL you will see something like 'code=XXXXXXX'. 
-//Copy and paste that code below. It is needed to generate the certificates used for the new Lutron SSL connection.
-//https://device-login.lutron.com/oauth/authorize?client_id=e001a4471eb6152b7b3f35e549905fd8589dfcf57eb680b6fb37f20878c28e5a&redirect_uri=https%3A%2F%2Fdevice-login.lutron.com%2Flutron_app_oauth_redirect&response_type=code
-var OAUTHCODE = 'd76676f4544238ff682a0d6684e273ecb96c0fede251e33fe34c9316f3503808';
-
+var CONFIG = require('./config.json');
 
 var shortPressTime = 300;  //Time (in ms) to hold button to trigger a held event vs a single press
 var intervalTime = 750;  //Frequency (in ms) to send a held button event if using the ramp hold method
@@ -46,5 +39,5 @@ var buttonMethods = [
 	}
 ];
 
-lutronpro.startup(SMARTBRIDGE_IP, SMARTTHINGS_IP, OAUTHCODE, buttonMethods, shortPressTime, intervalTime);
+lutronpro.startup(CONFIG.SMARTBRIDGE_IP, CONFIG.SMARTTHINGS_IP, CONFIG.OAUTHCODE, buttonMethods, shortPressTime, intervalTime);
 
